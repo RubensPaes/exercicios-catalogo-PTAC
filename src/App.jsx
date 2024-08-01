@@ -2,35 +2,58 @@ import { Link } from "react-router-dom";
 import "./globals.css";
 
 export default function App() {
+    const [listaCarros, setCarros] = useState([
+      {id: 1, nome: "Fuscão", preço: "R$: 50000,00" },
+      {id: 2, nome: "Del Rey", preço: "R$: 60000,00" },
+      {id: 3, nome: "Opala", preço: "R$: 70000,00" },
+      {id: 4, nome: "uno com escada emcima", preço: "R$: 10000000000,00" },
+      {id: 5, nome: "Brasilia Amarela", preço: "R$: 20,00" }
+      ])
+  
+   const [listaPedidos, setListaPedidos] = useState([]);
+   const adicionaritemCarros = (item) => {
+    setlistaCarros([...listaCarros, item])
+   }
+   const removerItemPedidos = (id) => {
+   let remover = false
+   let listaAux = listaPedidos.filter((carro) => {
+   if(remover == false){
+    if(carro.id !== id){
+      return carro
+    } else{
+      remover = true;
+      return null
+    }
+   } else{
+    return carro
+   }
+  
+  
+   })
+  
+   setListaPedidos(listaAux)
+  }
     return (
-        <div>
-            <h1>Lista de Exercícios</h1>
-            <ol type='1'>
-                <li>
-                    <Link to="/primeiraAtividade">Atividade 1: Criar componente de página Home</Link>
-                </li>
-                <li>
-                    <Link to="/segundaAtividade">Atividade 2: Criar estado para lista de produtos</Link>
-                </li>
-                <li>
-                    <Link to="/terceiraAtividade">Atividade 3: Listar os objetos da lista de produtos</Link>
-                </li>
-                <li>
-                    <Link to="/quartaAtividade">Atividade 4: Criar estado e função para adicionar o objeto na lista de pedidos</Link>
-                </li>
-                <li>
-                    <Link to="/quintaAtividade">Atividade 5: Criar botão para adicionar o objeto na lista de pedidos</Link>
-                </li>
-                <li>
-                    <Link to="/sextaAtividade">Atividade 6: Listar os objetos da lista de pedidos</Link>
-                </li>
-                <li>
-                    <Link to="/setimaAtividade">Atividade 7: Criar a função para remover objeto da lista de pedidos</Link>
-                </li>
-                <li>
-                    <Link to="/oitavaAtividade">Atividade 8: Criar botão para remover o objeto do pedido</Link>
-                </li>
-            </ol>
-        </div>
+      <div>
+           <h1>Carros do Leandro</h1>  
+           {listaCarros.map((carro) =>
+          <div key={carro.id}>
+            <p>{carro.nome}</p>
+            <p>{carro.preço}</p>
+            <button onClick={() => adicionarItemCarros(carro)}>Selecionar</button>
+          </div>
+        )
+        }
+        {
+          listaPedidos.map((carro) =>
+            <div key={carro.id}>
+          <p>{carro.nome}</p>
+          <p>{carro.preço}</p>
+          <button onClick={() => removerItemPedidos(carro.id)}>Remover</button>
+          </div>
+        )
+        }
+      </div>
+     
     );
-}
+  }

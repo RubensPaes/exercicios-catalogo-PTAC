@@ -6,7 +6,7 @@
 
 import { useState } from "react";
 
-export default function Home() {
+export default function Meio() {
   const [listaCarros, setCarros] = useState([
     {id: 1, nome: "Fuscão", preço: "R$: 50000,00" },
     {id: 2, nome: "Del Rey", preço: "R$: 60000,00" },
@@ -17,7 +17,7 @@ export default function Home() {
 
  const [listaPedidos, setListaPedidos] = useState([]);
  const adicionaritemCarros = (item) => {
-  setlistaCarros([...listaCarros, item])
+ setListaPedidos([...listaPedidos, item])
  }
  const removerItemPedidos = (id) => {
  let remover = false
@@ -45,7 +45,7 @@ export default function Home() {
         <div key={carro.id}>
           <p>{carro.nome}</p>
           <p>{carro.preço}</p>
-          <button onClick={() => adicionarItemCarros(carro)}>Selecionar</button>
+          <button onClick={() => adicionaritemCarros(carro)}>Selecionar</button>
         </div>
       )
       }
